@@ -2,6 +2,7 @@
 This project contains the implementation of a simple Laravel example RESTful API for travel books.
 We have several different models: countries, languages, authors and books. Travel books are written by one author,
 in one language, for one country.
+For this relatively simple API with 20 endpoints, Comet is able to generate 112 test-cases.
 
 The different API routes and their parameters are:
 ```http request
@@ -46,4 +47,4 @@ yarn # or npm install
 Don't forget to update your Homestead site configuration and add an entry to your local hosts file.
 
 ## Comet usage
-By executing `npx comet make:tests specification.yml` all testcases will be generated.
+By executing `npx comet make:tests specification.yml` all test-cases will be generated.
