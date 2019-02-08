@@ -28,7 +28,7 @@ PATCH /authors/{id}
 DELETE /authors/{id}
 
 # Books
-GET /books{?filter[title]}{?filter[publisher]}{?filter[title]}{?filter[author]}{?filter[country]}{?filter[language]}{?include}
+GET /books{?filter[title]}{?filter[publisher]}{?filter[author]}{?filter[country]}{?filter[language]}{?include}
 GET /books/{id}{?include}
 POST /books
 PATCH /books/{id}
