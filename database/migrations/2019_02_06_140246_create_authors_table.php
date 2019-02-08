@@ -20,7 +20,7 @@ class CreateAuthorsTable extends Migration
             $table->string('country_code')->nullable();
             $table->timestamps();
 
-            $table->foreign('country_code')->references('code')->on('countries')->onDelete('SET NULL');
+            $table->foreign('country_code')->references('code')->on('countries')->onDelete('SET NULL')->onUpdate('cascade');
         });
     }
 

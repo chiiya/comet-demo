@@ -49,9 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Country'
+                $ref: '#/components/schemas/Country'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -96,9 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Country'
+                $ref: '#/components/schemas/Country'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '405':
@@ -125,9 +121,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Country'
+                $ref: '#/components/schemas/Country'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -204,9 +198,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Language'
+                $ref: '#/components/schemas/Language'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -250,9 +242,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Language'
+                $ref: '#/components/schemas/Language'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '405':
@@ -279,9 +269,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Language'
+                $ref: '#/components/schemas/Language'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -364,9 +352,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+                $ref: '#/components/schemas/Author'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -407,9 +393,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+                $ref: '#/components/schemas/Author'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '405':
@@ -433,9 +417,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+                $ref: '#/components/schemas/Author'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -550,9 +532,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/Book'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -594,9 +574,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/Book'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '405':
@@ -620,9 +598,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/Book'
         '401':
           description: Unauthorized; Missing or invalid X-Authorization header.
         '422':
@@ -781,7 +757,7 @@ components:
           example: de
           minLength: 2
           maxLength: 2
-        languages:
+        countries:
           description: Countries the language is spoken in
           type: array
           items:
@@ -910,22 +886,19 @@ components:
               - language_code
         country:
           description: Country the author is from
-          type: array
-          items:
-            description: Country specified by name and country-code
-            properties:
-              name:
-                type: string
-                example: Germany
-              code:
-                type: string
-                example: DE
-                minLength: 2
-                maxLength: 2
-            type: object
-            required:
-              - name
-              - code
+          properties:
+            name:
+              type: string
+              example: Germany
+            code:
+              type: string
+              example: DE
+              minLength: 2
+              maxLength: 2
+          type: object
+          required:
+            - name
+            - code
       type: object
       required:
         - id
@@ -960,73 +933,64 @@ components:
           example: de
         author:
           description: The author of the book
-          type: array
-          items:
-            description: Author model
-            properties:
-              id:
-                type: integer
-                example: 1
-              first_name:
-                type: string
-                example: John
-              last_name:
-                type: string
-                example: Doe
-              date_of_birth:
-                type: string
-                nullable: true
-                example: '2002-12-14 00:00:00'
-              homepage:
-                type: string
-                format: uri
-                nullable: true
-                example: 'http://example.org'
-              country_code:
-                type: string
-                nullable: true
-                example: DE
-            type: object
-            required:
-              - id
-              - first_name
-              - last_name
+          properties:
+            id:
+              type: integer
+              example: 1
+            first_name:
+              type: string
+              example: John
+            last_name:
+              type: string
+              example: Doe
+            date_of_birth:
+              type: string
+              nullable: true
+              example: '2002-12-14 00:00:00'
+            homepage:
+              type: string
+              format: uri
+              nullable: true
+              example: 'http://example.org'
+            country_code:
+              type: string
+              nullable: true
+              example: DE
+          type: object
+          required:
+            - id
+            - first_name
+            - last_name
         country:
           description: Country the travel book is for
-          type: array
-          items:
-            description: Country specified by name and country-code
-            properties:
-              name:
-                type: string
-                example: Germany
-              code:
-                type: string
-                example: DE
-                minLength: 2
-                maxLength: 2
-            type: object
-            required:
-              - name
-              - code
+          properties:
+            name:
+              type: string
+              example: Germany
+            code:
+              type: string
+              example: DE
+              minLength: 2
+              maxLength: 2
+          type: object
+          required:
+            - name
+            - code
         language:
           description: Language the book is written in
-          type: array
-          items:
-            description: Language specified by name and language-code
-            properties:
-              name:
-                type: string
-                example: German
-              code:
-                type: string
-                example: de
-                minLength: 2
-                maxLength: 2
-            type: object
-            required:
-              - name
-              - code
+          properties:
+            name:
+              type: string
+              example: German
+            code:
+              type: string
+              example: de
+              minLength: 2
+              maxLength: 2
+          type: object
+          required:
+            - name
+            - code
       type: object
       required:
         - id

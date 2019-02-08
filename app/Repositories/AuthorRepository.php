@@ -81,7 +81,7 @@ class AuthorRepository implements RepositoryContract
 
         // Filter by author name
         if (isset($parameters['name'])) {
-            $query = $query->where(\DB::raw("CONCAT(first_name, ' ', last_name)"), 'LIKE', '%'.$parameters['name'].'%');
+            $query = $query->where(\DB::raw("first_name || ' ' || last_name"), 'LIKE', '%'.$parameters['name'].'%');
         }
 
         return $query->get();

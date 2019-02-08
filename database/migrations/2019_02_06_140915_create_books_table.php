@@ -23,8 +23,8 @@ class CreateBooksTable extends Migration
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
-            $table->foreign('country_code')->references('code')->on('countries')->onDelete('cascade');
-            $table->foreign('language_code')->references('code')->on('languages')->onDelete('cascade');
+            $table->foreign('country_code')->references('code')->on('countries')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('language_code')->references('code')->on('languages')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

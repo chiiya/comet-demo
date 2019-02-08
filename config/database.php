@@ -54,6 +54,9 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+            'modes' => [
+                'PIPES_AS_CONCAT',
+            ],
         ],
 
         'pgsql' => [

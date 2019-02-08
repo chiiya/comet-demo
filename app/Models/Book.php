@@ -71,6 +71,16 @@ class Book extends Model implements HasRelations
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'author_id' => 'integer',
+        'price' => 'float',
+    ];
+
+    /**
      * One-To-Many: One book belongs to one author.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
