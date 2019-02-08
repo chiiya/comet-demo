@@ -1,0 +1,1142 @@
+openapi: 3.0.0
+info:
+  title: Travel API
+  contact:
+    name: Elisha Witte
+    url: 'https://www.chiiya.moe'
+    email: author@name.com
+  version: '1.0'
+paths:
+  /countries:
+    get:
+      description: Returns a list of all countries.
+      parameters:
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - languages
+                - authors
+                - books
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    post:
+      description: Store a new country in database.
+      responses:
+        '201':
+          description: Successfully stored new country.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Country'
+  /countries/{code}:
+    get:
+      description: Returns a single country entry.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          example: DE
+          schema:
+            type: string
+            example: DE
+            minLength: 2
+            maxLength: 2
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - languages
+                - authors
+                - books
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    patch:
+      description: Update a country in database.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          example: DE
+          schema:
+            type: string
+            example: DE
+            minLength: 2
+            maxLength: 2
+      responses:
+        '200':
+          description: Successfully updated entry.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Country'
+    delete:
+      description: Delete a country from database.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          example: DE
+          schema:
+            type: string
+            example: DE
+            minLength: 2
+            maxLength: 2
+      responses:
+        '204':
+          description: Successfully deleted entry.
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+  /languages:
+    get:
+      description: Returns a list of all languages.
+      parameters:
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - countries
+                - books
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Language'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    post:
+      description: Store a new language in database.
+      responses:
+        '201':
+          description: Successfully stored new entry.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Language'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Language'
+  /languages/{code}:
+    get:
+      description: Returns a single language entry.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          example: de
+          schema:
+            type: string
+            example: de
+            minLength: 2
+            maxLength: 2
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - countries
+                - books
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Language'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    patch:
+      description: Update a language in database.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          example: de
+          schema:
+            type: string
+            example: de
+            minLength: 2
+            maxLength: 2
+      responses:
+        '200':
+          description: Successfully updated entry.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Language'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Language'
+    delete:
+      description: Delete a language from database.
+      parameters:
+        - name: code
+          in: path
+          required: true
+          example: de
+          schema:
+            type: string
+            example: de
+            minLength: 2
+            maxLength: 2
+      responses:
+        '204':
+          description: Successfully deleted entry.
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+  /authors:
+    get:
+      description: Returns a list of all authors.
+      parameters:
+        - name: 'filter[name]'
+          in: query
+          required: false
+          example: 'John'
+          schema:
+            type: string
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - books
+                - country
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    post:
+      description: Store a new author in database.
+      responses:
+        '201':
+          description: Successfully stored new author.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Author'
+  /authors/{id}:
+    get:
+      description: Returns a single author entry.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - books
+                - country
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    patch:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+      description: Update an author in database.
+      responses:
+        '200':
+          description: Successfully updated entry.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Author'
+    delete:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+      description: Delete an author from database.
+      responses:
+        '204':
+          description: Successfully deleted entry.
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+  /books:
+    get:
+      description: Returns a list of all books.
+      parameters:
+        - name: filter[title]
+          in: query
+          required: false
+          example: 'Explore'
+          schema:
+            type: string
+        - name: filter[publisher]
+          in: query
+          required: false
+          example: 'Example'
+          schema:
+            type: string
+        - name: filter[author]
+          description: >-
+            Filter by author id.
+          in: query
+          required: false
+          example: 1
+          schema:
+            type: integer
+        - name: filter[country]
+          description: >-
+            Filter by country code.
+          in: query
+          required: false
+          example: CH
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: filter[language]
+          description: >-
+            Filter by language code.
+          in: query
+          required: false
+          example: de
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - author
+                - country
+                - language
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    post:
+      description: Store a new book in database.
+      responses:
+        '201':
+          description: Successfully stored new entry.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Book'
+  /books/{id}:
+    get:
+      description: Returns a single book entry.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+        - name: include
+          in: query
+          description: >-
+            List of relations to include in the response, comma separated.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - author
+                - country
+                - language
+      responses:
+        '200':
+          description: Successfully retrieved information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+    patch:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+      description: Update a book in database.
+      responses:
+        '200':
+          description: Successfully updated entry.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '422':
+          description: Invalid input
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+      requestBody:
+        $ref: '#/components/requestBodies/Book'
+    delete:
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+      description: Delete a book from database.
+      responses:
+        '204':
+          description: Successfully deleted entry.
+        '401':
+          description: Unauthorized; Missing or invalid X-Authorization header.
+        '405':
+          description: Method not allowed; Wrong HTTP verb used to access this resource.
+        '500':
+          description: Internal server error.
+      security:
+        - api_key: []
+servers:
+  - url: 'http://local.comet-demo/api'
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: X-Authorization
+      in: header
+  schemas:
+    Country:
+      description: Country specified by name and country-code
+      properties:
+        name:
+          type: string
+          example: Germany
+        code:
+          type: string
+          example: DE
+          minLength: 2
+          maxLength: 2
+        languages:
+          description: Languages that belong to this country
+          type: array
+          items:
+            description: Language specified by name and language-code
+            properties:
+              name:
+                type: string
+                example: German
+              code:
+                type: string
+                example: de
+                minLength: 2
+                maxLength: 2
+            type: object
+            required:
+              - name
+              - code
+        authors:
+          description: Authors belonging to this country
+          type: array
+          items:
+            description: Author model
+            properties:
+              id:
+                type: integer
+                example: 1
+              first_name:
+                type: string
+                example: John
+              last_name:
+                type: string
+                example: Doe
+              date_of_birth:
+                type: string
+                nullable: true
+                example: '2002-12-14 00:00:00'
+              homepage:
+                type: string
+                format: uri
+                nullable: true
+                example: 'http://example.org'
+              country_code:
+                type: string
+                nullable: true
+                example: DE
+            type: object
+            required:
+              - id
+              - first_name
+              - last_name
+        books:
+          description: Travel books for this country
+          type: array
+          items:
+            description: Book model
+            properties:
+              id:
+                type: integer
+                example: 1
+              title:
+                type: string
+                example: 'Exploring the Andes'
+              description:
+                type: string
+                example: 'An exciting journey across the Andes'
+              publisher:
+                type: string
+                example: 'Example Publishing'
+              price:
+                type: number
+                example: 6.00
+              author_id:
+                type: integer
+                example: 1
+              country_code:
+                type: string
+                example: DE
+              language_code:
+                type: string
+                example: de
+            type: object
+            required:
+              - id
+              - title
+              - description
+              - publisher
+              - price
+              - author_id
+              - country_code
+              - language_code
+      type: object
+      required:
+        - name
+        - code
+    Language:
+      description: Language specified by name and language-code
+      properties:
+        name:
+          type: string
+          example: German
+        code:
+          type: string
+          example: de
+          minLength: 2
+          maxLength: 2
+        languages:
+          description: Countries the language is spoken in
+          type: array
+          items:
+            description: Country specified by name and country-code
+            properties:
+              name:
+                type: string
+                example: Germany
+              code:
+                type: string
+                example: DE
+                minLength: 2
+                maxLength: 2
+            type: object
+            required:
+              - name
+              - code
+        books:
+          description: Travel books in this language
+          type: array
+          items:
+            description: Book model
+            properties:
+              id:
+                type: integer
+                example: 1
+              title:
+                type: string
+                example: 'Exploring the Andes'
+              description:
+                type: string
+                example: 'An exciting journey across the Andes'
+              publisher:
+                type: string
+                example: 'Example Publishing'
+              price:
+                type: number
+                example: 6.00
+              author_id:
+                type: integer
+                example: 1
+              country_code:
+                type: string
+                example: DE
+              language_code:
+                type: string
+                example: de
+            type: object
+            required:
+              - id
+              - title
+              - description
+              - publisher
+              - price
+              - author_id
+              - country_code
+              - language_code
+      type: object
+      required:
+        - name
+        - code
+    Author:
+      description: Author model
+      properties:
+        id:
+          type: integer
+          example: 1
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        date_of_birth:
+          type: string
+          nullable: true
+          example: '2002-12-14 00:00:00'
+        homepage:
+          type: string
+          format: uri
+          nullable: true
+          example: 'http://example.org'
+        country_code:
+          type: string
+          nullable: true
+          example: DE
+        books:
+          description: Books that the author has written
+          type: array
+          items:
+            description: Book model
+            properties:
+              id:
+                type: integer
+                example: 1
+              title:
+                type: string
+                example: 'Exploring the Andes'
+              description:
+                type: string
+                example: 'An exciting journey across the Andes'
+              publisher:
+                type: string
+                example: 'Example Publishing'
+              price:
+                type: number
+                example: 6.00
+              author_id:
+                type: integer
+                example: 1
+              country_code:
+                type: string
+                example: DE
+              language_code:
+                type: string
+                example: de
+            type: object
+            required:
+              - id
+              - title
+              - description
+              - publisher
+              - price
+              - author_id
+              - country_code
+              - language_code
+        country:
+          description: Country the author is from
+          type: array
+          items:
+            description: Country specified by name and country-code
+            properties:
+              name:
+                type: string
+                example: Germany
+              code:
+                type: string
+                example: DE
+                minLength: 2
+                maxLength: 2
+            type: object
+            required:
+              - name
+              - code
+      type: object
+      required:
+        - id
+        - first_name
+        - last_name
+    Book:
+      description: Book model
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: 'Exploring the Andes'
+        description:
+          type: string
+          example: 'An exciting journey across the Andes'
+        publisher:
+          type: string
+          example: 'Example Publishing'
+        price:
+          type: number
+          example: 6.00
+        author_id:
+          type: integer
+          example: 1
+        country_code:
+          type: string
+          example: DE
+        language_code:
+          type: string
+          example: de
+        author:
+          description: The author of the book
+          type: array
+          items:
+            description: Author model
+            properties:
+              id:
+                type: integer
+                example: 1
+              first_name:
+                type: string
+                example: John
+              last_name:
+                type: string
+                example: Doe
+              date_of_birth:
+                type: string
+                nullable: true
+                example: '2002-12-14 00:00:00'
+              homepage:
+                type: string
+                format: uri
+                nullable: true
+                example: 'http://example.org'
+              country_code:
+                type: string
+                nullable: true
+                example: DE
+            type: object
+            required:
+              - id
+              - first_name
+              - last_name
+        country:
+          description: Country the travel book is for
+          type: array
+          items:
+            description: Country specified by name and country-code
+            properties:
+              name:
+                type: string
+                example: Germany
+              code:
+                type: string
+                example: DE
+                minLength: 2
+                maxLength: 2
+            type: object
+            required:
+              - name
+              - code
+        language:
+          description: Language the book is written in
+          type: array
+          items:
+            description: Language specified by name and language-code
+            properties:
+              name:
+                type: string
+                example: German
+              code:
+                type: string
+                example: de
+                minLength: 2
+                maxLength: 2
+            type: object
+            required:
+              - name
+              - code
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - publisher
+        - price
+        - author_id
+        - country_code
+        - language_code
+  requestBodies:
+    Country:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Sweden
+              code:
+                type: string
+                example: SE
+                minLength: 2
+                maxLength: 2
+            required:
+              - name
+              - code
+      required: true
+    Language:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Swedish
+              code:
+                type: string
+                example: se
+                minLength: 2
+                maxLength: 2
+            required:
+              - name
+              - code
+      required: true
+    Author:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              last_name:
+                type: string
+                example: Doe
+              first_name:
+                type: string
+                example: John
+              date_of_birth:
+                type: string
+                example: '2002-12-14 00:00:00'
+              homepage:
+                type: string
+                format: uri
+                example: 'http://example.org'
+              country_code:
+                type: string
+                example: DE
+            required:
+              - last_name
+              - first_name
+      required: true
+    Book:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: 'Exploring the Andes'
+              description:
+                type: string
+                example: 'An exciting journey across the Andes'
+              publisher:
+                type: string
+                example: 'Example Publishing'
+              price:
+                type: number
+                example: 6.00
+              author_id:
+                type: integer
+                example: 1
+              country_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+                example: DE
+              language_code:
+                type: string
+                minLength: 2
+                maxLength: 2
+                example: de
+            required:
+              - title
+              - description
+              - publisher
+              - price
+              - author_id
+              - country_code
+              - language_code
+      required: true
