@@ -44,7 +44,7 @@ php artisan key:generate
 php artisan migrate --seed
 yarn # or npm install
 ```
-Don't forget to update your Homestead site configuration and add an entry to your local hosts file.
+When using Homestead (recommended), don't forget to update your site configuration and add an entry to your local hosts file.
 
 ## Comet usage
 By executing `npx comet make:tests specification.yml` all test-cases will be generated.
