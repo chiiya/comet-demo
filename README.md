@@ -47,4 +47,7 @@ yarn # or npm install
 When using Homestead (recommended), don't forget to update your site configuration and add an entry to your local hosts file.
 
 ## Comet usage
-By executing `npx comet make:tests specification.yml` all test-cases will be generated.
+By executing `npx comet make:tests specification.yml` all test-cases will be generated. What this does is: 
+1. Add a Comet test suite to your `phpunit.xml` file, if not already present.
+2. Add the necessary dependencies to your `composer.json` (Make sure to run `composer install` afterwards).
+3. Generate the hook trait and the actual test cases (@`tests/Comet`)
