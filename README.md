@@ -33,3 +33,17 @@ POST /books
 PATCH /books/{id}
 DELETE /books/{id}
 ```
+
+## Installation
+After cloning the repository, initialize the project with:
+```bash
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate --seed
+yarn # or npm install
+```
+Don't forget to update your Homestead site configuration and add an entry to your local hosts file.
+
+## Comet usage
+By executing `npx comet make:tests specification.yml` all testcases will be generated.
