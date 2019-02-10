@@ -51,3 +51,7 @@ By executing `npx comet make:tests specification.yml` all test-cases will be gen
 1. Add a Comet test suite to your `phpunit.xml` file, if not already present.
 2. Add the necessary dependencies to your `composer.json` (Make sure to run `composer install` afterwards).
 3. Generate the hook trait and the actual test cases (@`tests/Comet`)
+
+## Testing
+
+To execute the tests, run `make test`. In order to generate a code-coverage report, run `make code-coverage`.
