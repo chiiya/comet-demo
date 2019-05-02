@@ -14,7 +14,7 @@ class AuthorsStoreRequest extends BaseRequest
             'first_name' => 'required',
             'date_of_birth' => 'date',
             'homepage' => 'url',
-            'country_id' => 'exists:countries,id',
+            'country_code' => 'exists:countries,code',
         ];
     }
 
@@ -30,7 +30,7 @@ class AuthorsStoreRequest extends BaseRequest
             'first_name.required' => 'Please specify the author\'s first name',
             'date_of_birth.date' => 'The date of birth must be a valid date',
             'homepage.url' => 'The homepage must be a valid URL',
-            'country_id.exists' => 'The specified country could not be found',
+            'country_code.exists' => 'The specified country could not be found',
         ];
     }
 }
