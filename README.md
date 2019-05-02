@@ -1,5 +1,5 @@
 <p align="center"><img src="https://i.postimg.cc/0QZsGfyb/comet-demo-logo.png" alt="Comet Demo"></p>
-<p align="center"><strong>Example project illustrating  [comet](https://github.com/chiiya/comet) abilities.</strong></p>
+<p align="center"><strong>Example project illustrating <a href="https://github.com/chiiya/comet">comet</a> abilities.</strong></p>
 
 ## Index
 <pre>
