@@ -8,17 +8,17 @@ The different API routes and their parameters are:
 ```http request
 # Countries
 GET /countries{?include}
-GET /countries/{id}{?include}
+GET /countries/{code}{?include}
 POST /countries
-PATCH /countries/{id}
-DELETE /countries/{id}
+PATCH /countries/{code}
+DELETE /countries/{code}
 
 # Languages
-GET /countries{?include}
-GET /countries/{id}{?include}
-POST /countries
-PATCH /countries/{id}
-DELETE /countries/{id}
+GET /languages{?include}
+GET /languages/{id}{?include}
+POST /languages
+PATCH /languages/{id}
+DELETE /languages/{id}
 
 # Authors
 GET /authors{?filter[name]}{?include}
